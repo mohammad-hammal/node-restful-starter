@@ -67,3 +67,21 @@ you can gurd any routes using auth middleware like this:
 ```
 router.get('/users/me', asyncMethod(isLogggedIn), userController.getData);
 ```
+### User Routes
+#### Register 
+* Route: /users/register
+* Method: POST
+* Content-type: application/json
+* Body: ```name```, ```email```, ```password```
+
+#### Login 
+* Route: /users/login
+* Method: POST
+* Content-type: application/json
+* Body: ```email```, ```password```
+* Result: token
+#### getData 
+* Route: /users/getData
+* Method: GET
+* Authorization: token
+* Result: current user data
