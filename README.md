@@ -80,7 +80,7 @@ router.get('/users/me', asyncMethod(isLogggedIn), userController.getData);
 * Content-type: application/json
 * Body: ```email```, ```password```
 * Result: token
-#### getData 
+#### Get user data 
 * Route: /users/getData
 * Method: GET
 * Authorization: token
