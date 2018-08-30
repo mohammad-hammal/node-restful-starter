@@ -38,7 +38,7 @@ export const login = async (req, res) => {
 
   const authSuccess = await bcrypt.compare(password, user.password);
   if (authSuccess) {
-    const token = generateToken(user._id, email, "1h");
+    const token = generateToken(user._id, email);
     res.status(200).json({access_token: token});
   }
 };
