@@ -1,87 +1,69 @@
-# Project Title
+# Node.js RESTful API boilerplate
 
-One Paragraph of project description goes here
+node.js boilerplate to make bulding RESTful API faster, with mongodb nosql database.
 
-## Getting Started
+## Features
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+* User model with Authentication 
+* Easy Validation Process
+* Json web token
+* Use ES6 features
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
+Clone the project
 ```
-Give the example
+git clone https://github.com/mohammad-hammal/node-restful-starter.git
 ```
 
-And repeat
+Install dependencies 
+```
+npm install 
+```
+or
+```
+yarn install
+```
+## Start
+
+``` npm start```
+
+## Documentation
+
+### Setup variables
+
+you can put the port number, mongodb connection link, and json web token key from ``` .env ``` :
+```
+PORT = 5000
+DATABASE = connection_link
+JWT_KEY = key 
+```
+### Routing
+
+you can put your routes and assign them to controllers in ```index.js``` inside routes folder
 
 ```
-until finished
+router.get('/users/me', asyncMethod(isLogggedIn), userController.getData);
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Validation
+I used [express-validator](https://github.com/express-validator/express-validator) package for validation.
+put your validation rules inside ```validators.js``` middleware inside middleware folder and use you rule like this:
 
-## Running the tests
+```router.post('/users/register',validate(SaveUser) ,asyncMethod(userController.register));```
 
-Explain how to run the automated tests for this system
+### Async Methods
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+when using async/await in controller method put the method inside asyncMethod from ```index.js```  inside helpers folder to catch Promises errors.
 
 ```
-Give an example
+router.post('/users/login', asyncMethod(userController.login));
 ```
 
-## Deployment
+### Gurd Routes
 
-Add additional notes about how to deploy this on a live system
+you can gurd any routes using auth middleware like this:
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+```
+router.get('/users/me', asyncMethod(isLogggedIn), userController.getData);
+```
