@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 
 export const generateToken = (id, email, expiryDate) => {
   return jsonwebtoken.sign({ id, email }, process.env.JWT_KEY, {
-    expiresIn: expiryDate
+    expiresIn: "1h"
   });
 };
 
