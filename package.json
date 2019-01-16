@@ -4,11 +4,13 @@
   "main": "dist",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon -w src --exec \"babel-node src --presets es2015,stage-2\"",
-    "build": "mkdir dist && babel src -s -D -d dist --presets es2015,stage-2"
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "mkdir build && npm run build-babel && node ./build/index.js",
+    "start": "nodemon -w src --exec \"babel-node src\""
   },
   "dependencies": {
-    "bcrypt": "^3.0.0",
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "3.0.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
@@ -21,8 +23,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^1.18.3"
   }
 }

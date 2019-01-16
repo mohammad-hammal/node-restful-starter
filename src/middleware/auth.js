@@ -1,7 +1,7 @@
 import User from '../models/User';
 import jsonwebtoken from 'jsonwebtoken';
 
-const auth = async (req, res, next) => {
+const isLoggedIn = async (req, res, next) => {
   if (!req.headers.authorization) {
     res.status(400).json({
       message: "No Access Token Provided"
@@ -15,4 +15,4 @@ const auth = async (req, res, next) => {
   next();
 };
 
-export default auth;
+export default isLoggedIn;

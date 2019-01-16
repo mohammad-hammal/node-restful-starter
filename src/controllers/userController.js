@@ -1,8 +1,5 @@
 import User from '../models/User';
 import bcrypt from 'bcrypt';
-import jsonwebtoken from 'jsonwebtoken';
-import { showValidationErrors } from '../helpers';
-import { generateToken } from '../helpers';
 
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
@@ -38,7 +35,7 @@ export const login = async (req, res) => {
 
   const authSuccess = await bcrypt.compare(password, user.password);
   if (authSuccess) {
-    const token = generateToken(user._id, email);
+    const token = req.helpers.generateToken(user._id, email);
     res.status(200).json({access_token: token});
   }
 };
